@@ -12,6 +12,7 @@ export const Heading = () => {
       <h3 className="text-base sm:text-xl md:text-2xl font-medium">
         Jotion is the connected workspace where <br/>
         better, faster work happens
+        
       </h3>
       <Button>
         Enter Jotion
