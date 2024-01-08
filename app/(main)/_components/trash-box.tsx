@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { Spinner } from "@/components/spinner";
 import { Search, Trash, Undo } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { ConfirmModal } from "@/components/modals/confirm-modal";
 
 export const TrashBox = () => {
   const router = useRouter();
@@ -38,13 +39,24 @@ export const TrashBox = () => {
     toast.promise(promise, {
       loading: "Restoring note...",
       success: "Note restored",
-      error: "Failed to delete note",
+      error: "Failed to restore note",
     });
 
     if (params.documentId === documentId) {
       router.push("/documents");
     }
   };
+
+  const onRemove = (documentId: Id<"documents">) => {
+    const promise = remove({id: documentId})
+
+    toast.promise(promise, {
+        loading: "Deleting note...",
+        success: "Note deleted!",
+        error: "Failed to delete note."
+    })
+  }
+
 
   if (documents === undefined) {
     return (
@@ -85,16 +97,18 @@ export const TrashBox = () => {
               <div
                 onClick={(e) => onRestore(e, document._id)}
                 role="button"
-                className="rounded-sm hover:bg-neutral-200"
+                className="rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-neutral-600"
               >
                 <Undo className="h-4 w-4 text-muted-foreground" />
               </div>
+              <ConfirmModal onConfirm={()=> onRemove(document._id)}>
               <div
               role="button"
-              className="rounded-sm p-2 hover:bg-neutral-200"
+              className="rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-neutral-600"
               >
                 <Trash className="h-4 w-4 text-muted-foreground"/>
               </div>
+              </ConfirmModal>
             </div>
           </div>
         ))}
