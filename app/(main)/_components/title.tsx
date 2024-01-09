@@ -77,6 +77,6 @@ export const Title = ({ initialData }: TitleProps) => {
 
 Title.Skeleton = function TitleSkeleton(){
     return(
-        <Skeleton className="h-4 w-16 rounded-md"/>
+        <Skeleton className=" mt-1 h-5 w-20 rounded-md"/>
     );
 }
