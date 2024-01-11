@@ -73,7 +73,7 @@ export const Toolbar = ({
   }
 
   return (
-    <div className="pl-[54px] ml-[-9rem] group relative">
+    <div className="pl-[54px] mt-[-14rem] ml-[-4rem] group relative">
       {!!initialData?.icon && !preview && (
         <div className="flex items-center gap-x-2 group/icon pt-6">
           <IconPicker onChange={onIconSelect}>
